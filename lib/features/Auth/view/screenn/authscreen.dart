@@ -1,10 +1,14 @@
+// ignore_for_file: prefer_const_constructors, unused_import
+
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:regapi_1/core/validator.dart';
 import 'package:regapi_1/features/Auth/cubit/auth_cubit.dart';
 import 'package:regapi_1/features/Auth/cubit/auth_state.dart';
+import 'package:regapi_1/features/Auth/view/screenn/authloginscreen.dart';
 import 'package:regapi_1/features/Auth/view/widget/customtextfield.dart';
 import 'package:regapi_1/features/Auth/view/widget/gender.dart';
+import 'package:regapi_1/features/category/view/screen/login.dart';
 
 class AuthScreen extends StatefulWidget {
   const AuthScreen({super.key});
@@ -65,6 +69,7 @@ class _AuthScreenState extends State<AuthScreen> {
         },
         builder: (context, state) {
           return Scaffold(
+            backgroundColor: const Color.fromARGB(255, 231, 228, 227),
             body: Padding(
               padding: const EdgeInsets.all(16.0),
               child: Form(
@@ -93,11 +98,12 @@ class _AuthScreenState extends State<AuthScreen> {
                     ),
                   ),
                   Row(children: [
-                    const Text(
+                    Text(
+                      overflow: TextOverflow.fade,
                       "Please upload a photo for your profile",
-                      style: TextStyle(
-                        fontWeight: FontWeight.bold,
-                      ),
+                      // style: const TextStyle(
+                      //   fontWeight: FontWeight.bold,
+                      // ),
                     ),
                     const Spacer(),
                     context.read<AuthCubit>().image == null
@@ -112,7 +118,7 @@ class _AuthScreenState extends State<AuthScreen> {
                           )
                         : Container(
                             height: 80,
-                            width: 100,
+                            width: 80,
                             decoration: BoxDecoration(
                               shape: BoxShape.circle,
                               image: DecorationImage(
@@ -204,10 +210,15 @@ class _AuthScreenState extends State<AuthScreen> {
                   const SizedBox(height: 20),
                   ElevatedButton(
                     onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AuthloginScreen()),
+                      );
                       if (state is AuthSucessState) {
                         ScaffoldMessenger.of(context).showSnackBar(
                           SnackBar(
-                              backgroundColor: Colors.purpleAccent,
+                              backgroundColor: Colors.brown,
                               content: Text(state.userdata["message"])),
                         );
                       }
@@ -221,8 +232,30 @@ class _AuthScreenState extends State<AuthScreen> {
                             tokendata: tokenController.text,
                           );
                     },
-                    child: const Text("Sign Up"),
+                    child: const Text(
+                      "Sign Up",
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.brown,
+                          fontWeight: FontWeight.bold),
+                    ),
                   ),
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => AuthloginScreen()),
+                      );
+                    },
+                    child: Text(
+                      'Already Have Account ? Login Now',
+                      style: TextStyle(
+                          fontSize: 15,
+                          color: Colors.brown,
+                          fontWeight: FontWeight.bold),
+                    ),
+                  )
                 ]),
               ),
             ),

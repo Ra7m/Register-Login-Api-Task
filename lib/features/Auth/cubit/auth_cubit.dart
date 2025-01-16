@@ -1,5 +1,4 @@
-
-// ignore_for_file: unnecessary_import
+// ignore_for_file: unnecessary_import, unused_import
 
 import 'dart:convert';
 import 'dart:io';
@@ -24,24 +23,25 @@ class AuthCubit extends Cubit<AuthState> {
       required nationalIddata,
       required passworddata,
       required phonedata,
-      // required profileImagedata,
+      profileImagedata,
       required tokendata}) async {
     emit(AuthLoadingState());
     var user = await authData.postData(
-        name: namedata,
-        email: emaildata,
-        gender: genderdata,
-        nationalId: nationalIddata,
-        password: passworddata,
-        phone: phonedata,
-        profileImage:
-            userImage,
-        token: tokendata);
+      name: namedata,
+      email: emaildata,
+      gender: genderdata,
+      nationalId: nationalIddata,
+      password: passworddata,
+      phone: phonedata,
+      profileImage: userImage,
+      token: tokendata,
+    );
 
     emit(AuthSucessState(userdata: user));
   }
+
   ImagePicker picker = ImagePicker();
-  File ?image;
+  File? image;
   String? userImage;
 
   Future<void> addImage() async {
@@ -61,5 +61,16 @@ class AuthCubit extends Cubit<AuthState> {
     }
   }
 
+  postDatalogCubit({
+    required emaildata,
+    required passworddata,
+  }) async {
+    emit(AuthLoadinglogState());
+    var user = await authData.postlogData(
+      email: emaildata,
+      password: passworddata,
+    );
 
+    emit(AuthSucesslogState(Userdata: user));
+  }
 }
