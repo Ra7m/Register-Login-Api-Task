@@ -229,7 +229,9 @@ class _AuthScreenState extends State<AuthScreen> {
                             nationalIddata: nationalIdController.text,
                             passworddata: passwordController.text,
                             phonedata: phoneController.text,
+                            profileImagedata: profileImageController.text,
                             tokendata: tokenController.text,
+
                           );
                     },
                     child: const Text(

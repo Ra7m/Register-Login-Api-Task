@@ -6,6 +6,7 @@ import 'package:regapi_1/features/Auth/cubit/auth_state.dart';
 import 'package:regapi_1/features/Auth/view/screenn/authscreen.dart';
 import 'package:regapi_1/features/Auth/view/widget/customtextfield.dart';
 import 'package:regapi_1/features/category/view/screen/login.dart';
+import 'package:regapi_1/features/catog/view/screen/home-lap-cart.dart';
 
 class AuthloginScreen extends StatefulWidget {
   const AuthloginScreen({super.key});
@@ -140,7 +141,7 @@ class _AuthScreenState extends State<AuthloginScreen> {
                           );
                       Navigator.push(context,
                           MaterialPageRoute(builder: (context) {
-                        return const LoginScreen();
+                        return const HomeLapScreen();
                       }));
                     },
                     child: const Text(

@@ -1,6 +1,7 @@
 // ignore_for_file: avoid_print
 
 import 'package:dio/dio.dart';
+import 'package:regapi_1/helpear/cash-data.dart';
 
 class AuthData {
   final Dio dio = Dio();
@@ -13,6 +14,7 @@ class AuthData {
     required gender,
     required password,
     required token,
+    // String? profileImage,
     required profileImage,
   }) async {
     var response =
@@ -52,6 +54,10 @@ class AuthData {
 
     try {
       var data = response.data;
+      var newToken = data["user"]["nationalId"];
+      print(newToken);
+      CacheShared.shared!.setString("ID", newToken);
+      print(data["user"]["nationalId"]);
       print(response.statusCode);
       print(data['message']);
       return data;
