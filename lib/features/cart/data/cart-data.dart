@@ -9,7 +9,7 @@ class Cartdata {
     var response =
         await dio.post("https://elwekala.onrender.com/cart/add", data: {
       "nationalId": getId,
-      "productId": "64666d3a91c71d884185b774",
+      "productId": id,
       "quantity": "1"
     });
     var data = response.data;

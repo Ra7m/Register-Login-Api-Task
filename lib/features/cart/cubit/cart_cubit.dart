@@ -12,7 +12,7 @@ class CartCubit extends Cubit<CartState> {
 
   static CartCubit get(context) => BlocProvider.of(context);
   Cartdata cartData = Cartdata();
-  addCartCubit(dynamic id) async {
+  addCartCubit({required String id}) async {
     emit(CartloadingInitial());
     Cartdata.addCart(id: id);
     emit(CartsucessInitial());

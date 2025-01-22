@@ -27,7 +27,7 @@ class HomeLapScreen extends StatelessWidget {
                           Text(lap.name),
                           Spacer(),
                           IconButton(onPressed: (){
-                            CartCubit.get(context).addCartCubit();
+                            CartCubit.get(context).addCartCubit(id: state.lapHomeModel[index].id);
                           }, icon: Icon(Icons.add_shopping_cart_rounded)),
                         ]),
                         subtitle: Text(lap.description),
